@@ -1,7 +1,7 @@
 {
     "name":"Inventory Helper",
     "slug":"inventory-helper",
-    "version":"0.0.2",
+    "version":"0.0.3",
     "private":false,
     "shortDescription":"A module to help manage Inventory Adjustments",
     "location":"ForgeboxStorage",
