@@ -1,7 +1,7 @@
 {
     "name":"Inventory Helper",
     "slug":"inventory-helper",
-    "version":"0.0.6",
+    "version":"0.0.7",
     "private":false,
     "shortDescription":"A module to help manage Inventory Adjustments",
     "location":"ForgeboxStorage",
@@ -12,5 +12,15 @@
         "/tests/"
     ],
     "author":"",
-    "contributors":[]
+    "contributors":[],
+    "repository":{
+        "type":"git",
+        "URL":"https://github.com/octanner/scs-inventory-helper"
+    },
+    "dependencies":{
+        "api-auth-helper":"1.0.2"
+    },
+    "devDependencies":{
+        "testbox":"^2.4.0+80"
+    }
 }
