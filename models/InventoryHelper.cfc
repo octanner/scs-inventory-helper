@@ -23,7 +23,6 @@ component singleton {
         required string Cost_Center,
         required string Goods_Movement_Code
     ) {
-        // var authorizationCode = "Bearer " & getAuthToken();
         var authToken = apiAuthHelper.getApiToken();
         var codeRequest = {
             'Row': {
@@ -78,23 +77,4 @@ component singleton {
 
         return response;
     }
-
-    // var aHeaders = [
-    // 	{ 'name' = 'Content-Type', 'value' = 'application/x-www-form-urlencoded' },
-    // 	{ 'name' = 'Authorization',	'value' = authToken	}
-    // ];
-
-    // var aFormFields = [];
-
-    // var aBody = [
-    // 	{ 'name' = 'raw', 'value' = SerializeJSON(codeRequest) }
-    // ];
-
-    // var requestResultEvaluation = super.makeRequest(
-    // 	headers = aHeaders,
-    // 	body = aBody,
-    // 	urlRequest = getAuthEndpoint()
-    // );
-    // return requestResultEvaluation;
-
 }
