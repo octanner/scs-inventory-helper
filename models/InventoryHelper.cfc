@@ -52,7 +52,7 @@ component singleton {
             cfhttp(
                 method="POST",
                 charset="utf-8",
-                url=fullUrl,
+                url=settings.baseUrl,
                 result="result"
             ) {
                 cfhttpparam(type="header", name="Authorization", value="Bearer " & authToken);
