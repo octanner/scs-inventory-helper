@@ -44,7 +44,7 @@ component singleton {
                 'Reason': arguments.Reason,
                 'Cost_Center': arguments.Cost_Center,
                 'Goods_Movement_Code': (arguments.Goods_Movement_Code EQ '') ? getMovementCode(
-                    Movement_Type = arguments.Transaction_Code
+                    movementType = arguments.Transaction_Code
                 ) : arguments.Goods_Movement_Code
             }
         };
