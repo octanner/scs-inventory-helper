@@ -43,7 +43,7 @@ component singleton {
                 'Receiving_Storage_Loc': arguments.Receiving_Storage_Loc,
                 'Reason': arguments.Reason,
                 'Cost_Center': arguments.Cost_Center,
-                'Goods_Movement_Code': (arguments.Goods_Movement_Code EQ '') ? getGoodsMovementCode(
+                'Goods_Movement_Code': (arguments.Goods_Movement_Code EQ '') ? getMovementCode(
                     Movement_Type = arguments.Transaction_Code
                 ) : arguments.Goods_Movement_Code
             }
@@ -76,5 +76,73 @@ component singleton {
         }
 
         return response;
-    }
+	}
+	public function getPartInfo( 
+		required string part, 
+		required string plant 
+	){
+		var results = queryExecute("
+				SELECT
+				    c.matnr AS part,
+				    c.werks AS plant,
+				    c.lgpro AS location,
+				    d.labst AS qty
+				FROM marc c
+				JOIN mard d
+					ON d.mandt = 100
+					AND c.werks = d.werks
+					AND c.matnr = d.matnr
+					AND c.lgpro = d.lgort
+				WHERE c.mandt=100
+					AND c.werks = :plant
+					AND c.matnr = LPAD( :part, 18, '0' )
+		    ",
+		    {
+		    	part = { value = arguments.part, cfsqltype = "cf_sql_varchar" }, 
+				plant = { value = arguments.plant, cfsqltype = "cf_sql_varchar" } 
+		    },
+		    { datasource = "CORE" }
+		);
+		return {
+			"part": results.part,
+			"plant": results.plant,
+			"location": results.location,
+			"qty": results.qty
+		};
+	}
+
+	public function getCostCenter( required string plant ){
+		switch( arguments.plant ) { 
+		    case "1000": 
+		        return "5810";
+		    case "3000": 
+		        return "5010";
+		    case "1010": 
+		        return "50044";
+		    case "61": 
+		        return "50061";
+		    default: 
+		        return "5810";
+		} 
+	}
+	public function getMovementCode( required string movementType ){
+		switch( UCase( arguments.movementType ) ){ 
+		    case "MB01": 
+		        return "01";  // Goods receipt for purchase order
+		    case "MB31": 
+		        return "02";  // Goods receipt for production order
+		    case "MB1A": 
+		        return "03";  // Goods issue
+		    case "MB1B": 
+		        return "04";  // Transfer posting
+		    case "MB1C": 
+		        return "05";  // Other goods receipt
+		    case "MB11": 
+		        return "06";  // Reversal of goods movements
+		    case "MB04": 
+		        return "07";  // Subsequent adjustment with regard to a subcontract order        		        
+		    default: 
+		        return "03";  // Most common
+		} 
+	}
 }
