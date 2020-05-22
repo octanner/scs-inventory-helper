@@ -1,7 +1,7 @@
 {
     "name":"Inventory Helper",
     "slug":"inventory-helper",
-    "version":"0.0.1",
+    "version":"0.0.2",
     "shortDescription":"A module to help manage inventory adjustments via an API",
     "description":"A module to help manage inventory adjustments via an API",
     "author":"Mike Burt",
