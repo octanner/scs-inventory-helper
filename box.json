@@ -1,26 +1,26 @@
 {
-    "name": "Inventory Helper",
-    "slug": "inventory-helper",
-    "version": "0.0.10",
-    "private": false,
-    "shortDescription": "A module to help manage Inventory Adjustments",
-    "location": "ForgeboxStorage",
-    "type": "modules",
-    "ignore": [
+    "name":"Inventory Helper",
+    "slug":"inventory-helper",
+    "version":"1.0.0",
+    "private":false,
+    "shortDescription":"A module to help manage Inventory Adjustments",
+    "location":"ForgeboxStorage",
+    "type":"modules",
+    "ignore":[
         "**/.*",
         "/test/",
         "/tests/"
     ],
-    "author": "",
-    "contributors": [],
-    "repository": {
-        "type": "git",
-        "URL": "https://github.com/octanner/scs-inventory-helper"
+    "author":"",
+    "contributors":[],
+    "repository":{
+        "type":"git",
+        "URL":"https://github.com/octanner/scs-inventory-helper"
     },
-    "dependencies": {
-        "api-auth-helper": "1.0.2"
+    "dependencies":{
+        "api-auth-helper":"1.0.2"
     },
-    "devDependencies": {
-        "testbox": "^2.4.0+80"
+    "devDependencies":{
+        "testbox":"^2.4.0+80"
     }
 }
