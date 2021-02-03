@@ -1,10 +1,10 @@
 {
     "name":"Inventory Helper",
     "slug":"inventory-helper",
-    "version":"1.0.2",
+    "version":"2.0.0",
     "private":false,
     "shortDescription":"A module to help manage Inventory Adjustments",
-    "location":"octanner/scs-inventory-helper#v1.0.2",
+    "location":"octanner/scs-ztrk-helper#v2.0.0",
     "type":"modules",
     "ignore":[
         "**/.*",
@@ -22,5 +22,9 @@
     },
     "devDependencies":{
         "testbox":"^2.4.0+80"
+    },
+    "scripts":{
+        "postVersion":"package set location='octanner/scs-ztrk-helper#v`package version`'",
+        "prePublish":"echo 'git tag v`env show interceptData.BOXJSON.version`' | run && echo 'git push origin v`env show interceptData.BOXJSON.version`' | run"
     }
 }
