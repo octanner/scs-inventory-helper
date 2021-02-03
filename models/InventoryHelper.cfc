@@ -1,6 +1,6 @@
 component singleton {
 
-    property name="settings" inject="coldbox:setting:inventory-helper";
+    property name="settings" inject="coldbox:moduleSettings:inventory-helper";
     property name="apiAuthHelper" inject="ApiAuthHelper";
 
     public struct function adjust(
@@ -77,9 +77,9 @@ component singleton {
 
         return response;
 	}
-	public function getPartInfo( 
-		required string part, 
-		required string plant 
+	public function getPartInfo(
+		required string part,
+		required string plant
 	){
 		var results = queryExecute("
 				SELECT
@@ -98,8 +98,8 @@ component singleton {
 					AND c.matnr = LPAD( :part, 18, '0' )
 		    ",
 		    {
-		    	part = { value = arguments.part, cfsqltype = "cf_sql_varchar" }, 
-				plant = { value = arguments.plant, cfsqltype = "cf_sql_varchar" } 
+		    	part = { value = arguments.part, cfsqltype = "cf_sql_varchar" },
+				plant = { value = arguments.plant, cfsqltype = "cf_sql_varchar" }
 		    },
 		    { datasource = "CORE" }
 		);
@@ -112,37 +112,37 @@ component singleton {
 	}
 
 	public function getCostCenter( required string plant ){
-		switch( arguments.plant ) { 
-		    case "1000": 
+		switch( arguments.plant ) {
+		    case "1000":
 		        return "5810";
-		    case "3000": 
+		    case "3000":
 		        return "5010";
-		    case "1010": 
+		    case "1010":
 		        return "50044";
-		    case "61": 
+		    case "61":
 		        return "50061";
-		    default: 
+		    default:
 		        return "5810";
-		} 
+		}
 	}
 	public function getMovementCode( required string movementType ){
-		switch( UCase( arguments.movementType ) ){ 
-		    case "MB01": 
+		switch( UCase( arguments.movementType ) ){
+		    case "MB01":
 		        return "01";  // Goods receipt for purchase order
-		    case "MB31": 
+		    case "MB31":
 		        return "02";  // Goods receipt for production order
-		    case "MB1A": 
+		    case "MB1A":
 		        return "03";  // Goods issue
-		    case "MB1B": 
+		    case "MB1B":
 		        return "04";  // Transfer posting
-		    case "MB1C": 
+		    case "MB1C":
 		        return "05";  // Other goods receipt
-		    case "MB11": 
+		    case "MB11":
 		        return "06";  // Reversal of goods movements
-		    case "MB04": 
-		        return "07";  // Subsequent adjustment with regard to a subcontract order        		        
-		    default: 
+		    case "MB04":
+		        return "07";  // Subsequent adjustment with regard to a subcontract order
+		    default:
 		        return "03";  // Most common
-		} 
+		}
 	}
 }
