@@ -18,13 +18,16 @@
         "URL":"https://github.com/octanner/scs-inventory-helper"
     },
     "dependencies":{
-        "api-auth-helper":"1.0.2"
+        "api-auth-helper":"^1.0.3"
     },
     "devDependencies":{
         "testbox":"^2.4.0+80"
     },
     "scripts":{
-        "postVersion":"package set location='octanner/scs-inventory-helper#v`package version`'",
+        "postVersion":"package set location='octanner/scs-inventory-helper#v`package version`'"
         "prePublish":"echo 'git tag v`env show interceptData.BOXJSON.version`' | run && echo 'git push origin v`env show interceptData.BOXJSON.version`' | run"
+    },
+    "installPaths":{
+        "api-auth-helper":"modules/api-auth-helper/"
     }
 }
