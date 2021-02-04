@@ -25,6 +25,7 @@
     },
     "scripts":{
         "postVersion":"package set location='octanner/scs-inventory-helper#v`package version`'"
+        "prePublish":"echo 'git tag v`env show interceptData.BOXJSON.version`' | run && echo 'git push origin v`env show interceptData.BOXJSON.version`' | run"
     },
     "installPaths":{
         "api-auth-helper":"modules/api-auth-helper/"
